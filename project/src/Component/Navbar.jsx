@@ -1,45 +1,77 @@
-import React, { useState } from 'react';
-import { Menu, Search, ShoppingBag, ChevronDown } from "lucide-react";
+import React from "react";
+import Plant from "../assets/Plant.png"; 
+import NavbarImg from '../assets/Navbar.png'; // The center navigation image
+import Search from '../assets/Search.png';
+import Bag from '../assets/Bag.png';
 
-function Navbar() {
-    return (
-        <nav className="fixed top-0 left-0 w-full z-50 bg-[#0f160f] text-white shadow-md backdrop-blur-sm">
-            <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+const Navbar = () => {
+  return (
+    <nav className="absolute top-0 left-0 w-full z-50 pt-8 px-6 md:px-12">
+      {/* Container to manage width and spacing */}
+      <div className="max-w-[1800px] mx-auto flex items-center justify-between">
+        
+        {/* --- Left: Logo Section --- */}
+        <div className="flex items-center gap-3">
+          {/* Plant Icon - Width 48, Height 48 */}
+          <div className="w-[48px] h-[48px] relative">
+            <img 
+                src={Plant} 
+                alt="FloraVision Logo" 
+                className="w-full h-full object-contain"
+            />
+          </div>
+          
+          {/* Logo Text */}
+          <span className="text-white text-2xl font-bold tracking-wide">
+            FloraVision.
+          </span>
+        </div>
 
-                {/* Logo */}
-                <div className="flex items-center gap-2">
-                    <img
-                        alt="FloraVision logo"
-                        className="w-8 h-8 drop-shadow-lg"
-                    />
-                    <h1 className="text-xl font-semibold tracking-wide ">
-                        FloraVision.
-                    </h1>
-                </div>
+        {/* --- Center: Navigation Image --- */}
+        {/* Replacing text text with your 'Navbar.png' image */}
+        {/* Using explicit dimensions 531x35 as requested */}
+        <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-[64px]">
+           <img 
+             src={NavbarImg} 
+             alt="Navigation Links" 
+             style={{ width: '531px', height: '35px' }}
+             className="object-contain select-none"
+           />
+        </div>
 
-                {/* Center Menu */}
-                <ul className="hidden md:flex items-center gap-10 text-sm font-light font-handwriting">
-                    <li className="cursor-pointer hover:text-green-300 transition">Home</li>
+        {/* --- Right: Icons --- */}
+        <div className="flex items-center gap-8 md:gap-10">
+          {/* Search Icon - Width 26, Height 26 */}
+          <button className="opacity-75 hover:opacity-100 transition-opacity">
+            <img 
+              src={Search} 
+              alt="Search" 
+              className="w-[26px] h-[26px] object-contain" 
+            />
+          </button>
 
-                    <li
-                        className="relative cursor-pointer flex items-center gap-1 hover:text-green-300 transition"
-                    >
-                        Plants Type <ChevronDown size={16} />
-                    </li>
+          {/* Shopping Bag Icon - Width 26, Height 26 */}
+          <button className="opacity-75 hover:opacity-100 transition-opacity relative">
+             <img 
+              src={Bag} 
+              alt="Bag" 
+              className="w-[26px] h-[26px] object-contain" 
+            />
+          </button>
 
-                    <li className="cursor-pointer hover:text-green-300 transition">More</li>
-                    <li className="cursor-pointer hover:text-green-300 transition">Contact</li>
-                </ul>
+          {/* Hamburger Menu - Using SVG since 'Navbar.png' is now used for the center */}
+          <button className="text-white hover:opacity-80 transition-opacity ml-2">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+        </div>
 
-                {/* Right Icons */}
-                <div className="flex items-center gap-6">
-                    <Search className="cursor-pointer hover:text-green-300 transition" />
-                    <ShoppingBag className="cursor-pointer hover:text-green-300 transition" />
-                    <Menu className="cursor-pointer hover:text-green-300 md:hidden transition" />
-                </div>
-            </div>
-        </nav>
-    );
-}
+      </div>
+    </nav>
+  );
+};
 
 export default Navbar;
